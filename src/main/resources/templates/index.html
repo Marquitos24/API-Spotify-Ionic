@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Magic Water</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+        }
+
+        #inicio {
+            background-image: url('/imagenes/agua.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        .mmovil{
+            position: absolute;
+            left: 75%;
+            top: 10%;
+            bottom: 5%;
+
+        }
+        .logo {
+            width: auto;
+            height: 350px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            color: #336699;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #009688;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: darkseagreen;
+        }
+
+
+
+        .parrafo2 {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .subtitulo {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #38276D;
+        }
+
+        .texto-box {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: #fff;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-body {
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .super {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            background-color: #01a3f9;
+        }
+
+        .super:hover {
+            background-color: #0077b6;
+        }
+
+        .boton {
+            background-color: #009688;
+            color: white;
+            margin: 10px;
+        }
+        .div-parrafo{
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 18px;
+        }
+
+        #full {
+            width: 100%;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<div id="inicio">
+    <div class="container">
+        <div class="texto-box">
+            <h1 class="subtitulo">Magic Water</h1>
+            <p class="parrafo2">¡Bienvenidos al mundo de Magic Water!</p>
+            <p class="parrafo2">En Magic Water, nuestra pasión es transformar la rutina de cuidado personal en una experiencia mágica.</p>
+            <p class="parrafo2">Nuestros productos están diseñados para brindarte resultados sorprendentes y rápidos.</p>
+            <p class="parrafo2">Desde nuestra innovadora fórmula de acondicionador líquido hasta nuestras propiedades únicas para la piel, estamos aquí para hacerte sentir especial.</p>
+            <p class="parrafo2">Como parte de nuestro equipo, eres fundamental para llevar la magia a cada cliente.</p>
+            <p class="parrafo2">Juntos, crearemos momentos inolvidables y haremos que cada día sea un poco más mágico.</p>
+            <p class="parrafo2">¡Estamos encantados de tenerte aquí!</p>
+
+            <div class="mmovil">
+                <img src="/imagenes/logom.png" class="logo" >
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div style="max-width: 500px; margin: 0 auto;">
+    <div class="div-parrafo">
+        <p th:if="${login == null}" class="parrafo2">Usuario: sin inicio de sesión</p>
+        <p th:if="${!(login == null)}">
+            Usuario:
+            <span th:text="${login.getNif()}"></span>
+            <br>
+            <span th:text="${login.getNombre()}"></span>
+            <span th:text="${login.getApellidos()}"></span>
+            <br>
+            <span th:text="${login.getCategoria()}"></span>
+        </p>
+    </div>
+</div>
+
+<p style="text-align: left;">
+    <a th:if="${login == null}" th:href="@{/login}" class="parrafo2 boton" style="text-align: center;">Iniciar sesión</a>
+    <a th:if="${!(login == null)}" th:href="@{/logout}" class="parrafo2 boton">Cerrar sesión</a>
+    <a th:if="${!(login==null)}" th:href="@{/perfil}" class="parrafo2 boton">Perfil</a>
+</p>
+
+<div class="card">
+    <div class="card-body">
+        <h2><a href="/supervisor" class="super">Inspeccionar tareas (solo supervisores)</a></h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h2><a href="/trabajador" class="super">Gestionar tareas (solo trabajadores)</a></h2>
+    </div>
+</div>
+
+</body>
+</html>

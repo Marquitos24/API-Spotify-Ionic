@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar tarea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease; /* Transición del color del borde */
+        }
+
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            border: 2px solid #007bff; /* Cambiar el ancho y el color del borde al seleccionar */
+            outline: none; /* Eliminar el contorno predeterminado del elemento enfocado */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            display: block;
+            margin: 0 auto;
+            padding: 12px 20px;
+            border: none;
+
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .centro{
+            text-align: center;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Estilos para el card */
+        .card {
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+            background-color: #007bff;
+            text-align: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        h2 a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        h2 a:hover {
+            text-decoration: underline;
+        }
+
+
+    </style>
+</head>
+<body>
+<form th:action="@{/trabajador/tarea/editar/guardar}" method="post">
+    <fieldset>
+        <legend class="centro">EDITAR LA TAREA</legend>
+        <input type="hidden" th:value="${tarea.idtarea}" name="id">
+        <div class="card">
+            <div class="card-body">
+                <h3><a href="/supervisor" class="super">Inspeccionar tareas <br>(solo supervisores)</a></h3>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h3><a href="/trabajador" class="super">Gestionar tareas <br>(solo trabajadores)</a></h3>
+            </div>
+        </div>
+        <p>
+            <label for="titulo">Titulo:</label>
+            <input type="text" th:value="${tarea.titulo}" id="titulo" name="titulo">
+        </p>
+        <p>
+            <label for="descripcion">Descripción:</label>
+            <input type="text" th:value="${tarea.descripcion}" id="descripcion" name="descripcion">
+        </p>
+        <p>
+            <label for="estado">Estado:</label>
+            <select th:value="${tarea.estado}" id="estado" name="estado">
+                <option value="Pendiente">Pendiente</option>
+                <option value="En curso">En curso</option>
+                <option value="Terminada">Terminada</option>
+            </select>
+        </p>
+        <p>
+            <label for="inicioprevisto">Inicio previsto:</label>
+            <input type="date" th:value="${tarea.inicioprevisto}" id="inicioprevisto" name="inicioprevisto">
+        </p>
+        <p>
+            <label for="finprevisto">Fin previsto:</label>
+            <input type="date" th:value="${tarea.finprevisto}" id="finprevisto" name="finprevisto">
+        </p>
+        <p>
+            <label for="inicioreal">Inicio real:</label>
+            <input type="date" th:value="${tarea.inicioreal}" id="inicioreal" name="inicioreal">
+        </p>
+        <p>
+            <label for="finreal">Fin real:</label>
+            <input type="date" th:value="${tarea.finreal}" id="finreal" name="finreal">
+        </p>
+        <p>
+            <input type="submit" value="Guardar cambios">
+        </p>
+    </fieldset>
+</form>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Tarea</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select,
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        select:focus,
+        input[type="date"]:focus {
+            border-color: #01a3f9;
+            outline: none;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+
+        input[type="submit"] {
+            background-color: #01a3f9;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0d8bce;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/trabajador/tarea/nueva/guardar}" method="post">
+    <img class="logo" src="/imagenes/logo.jpg" alt="Logo de la empresa">
+    <h2>La nueva tarea será añadida al proyecto Tareas Sueltas</h2>
+    <fieldset>
+        <legend>Añade la nueva tarea</legend>
+        <label for="titulo">Titulo:</label>
+        <input type="text" th:value="${tarea.titulo}" id="titulo" name="titulo" placeholder="Ingrese el título de la tarea">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" th:value="${tarea.descripcion}" id="descripcion" name="descripcion" placeholder="Ingrese la descripción de la tarea">
+        <label for="estado">Estado:</label>
+        <select th:value="${tarea.estado}" id="estado" name="estado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="En curso">En curso</option>
+            <option value="Terminada">Terminada</option>
+        </select>
+        <label for="inicioprevisto">Inicio previsto:</label>
+        <input type="date" th:value="${tarea.inicioprevisto}" id="inicioprevisto" name="inicioprevisto">
+        <label for="finprevisto">Fin previsto:</label>
+        <input type="date" th:value="${tarea.finprevisto}" id="finprevisto" name="finprevisto">
+        <label for="inicioreal">Inicio real:</label>
+        <input type="date" th:value="${tarea.inicioreal}" id="inicioreal" name="inicioreal">
+        <label for="finreal">Fin real:</label>
+        <input type="date" th:value="${tarea.finreal}" id="finreal" name="finreal">
+    </fieldset>
+    <input type="submit" value="Guardar cambios">
+</form>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo proyecto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: "\f0c4"; /* Unicode for fa-flask icon */
+            font-family: "Font Awesome 6 Free";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #01a3f9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        input[type="date"]:focus {
+            border-color: #01a3f9;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #01a3f9;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0d8bce;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px; /* Centrar la imagen verticalmente y agregar margen inferior */
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <img src="/imagenes/logo.jpg" alt="Logo de la empresa" class="logo">
+    <h2>Creación de un nuevo proyecto</h2>
+    <h3>Se añadirán de manera predeterminada las siguientes tareas:</h3>
+    <ul>
+        <li><i class="fas fa-flask"></i> Recolección de muestras</li>
+        <li><i class="fas fa-microscope"></i> Análisis de laboratorio</li>
+        <li><i class="fas fa-chart-line"></i> Interpretación de resultados</li>
+        <li><i class="fas fa-file-alt"></i> Elaboración del informe</li>
+    </ul>
+    <form action="/trabajador/proyecto/nuevo/guardar" method="post">
+        <label for="nombre">Nombre del Proyecto:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="descripcion">Descripción:</label><br>
+        <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br>
+        <label for="zona">Zona:</label><br>
+        <input type="text" id="zona" name="zona" required><br>
+        <label for="fecha">Fecha:</label><br>
+        <input type="date" id="fecha" name="fecha" required><br><br>
+        <input type="submit" value="Guardar">
+    </form>
+</div>
+<script>
+    function validateForm() {
+        var nombre = document.getElementById('nombre').value;
+        var descripcion = document.getElementById('descripcion').value;
+        var zona = document.getElementById('zona').value;
+        var fecha = document.getElementById('fecha').value;
+        var valid = true;
+
+        if (nombre.trim() === '') {
+            document.getElementById('nombre-error').innerText = 'Por favor, ingrese el nombre del proyecto.';
+            valid = false;
+        } else {
+            document.getElementById('nombre-error').innerText = '';
+        }
+
+        if (descripcion.trim() === '') {
+            document.getElementById('descripcion-error').innerText = 'Por favor, ingrese la descripción del proyecto.';
+            valid = false;
+        } else {
+            document.getElementById('descripcion-error').innerText = '';
+        }
+
+        if (zona.trim() === '') {
+            document.getElementById('zona-error').innerText = 'Por favor, ingrese la zona del proyecto.';
+            valid = false;
+        } else {
+            document.getElementById('zona-error').innerText = '';
+        }
+
+        if (fecha.trim() === '') {
+            document.getElementById('fecha-error').innerText = 'Por favor, seleccione la fecha del proyecto.';
+            valid = false;
+        } else {
+            document.getElementById('fecha-error').innerText = '';
+        }
+
+        return valid;
+    }
+</script>
+</body>
+</html>

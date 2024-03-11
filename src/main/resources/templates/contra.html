@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Supermercados de la abuela</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Cambié el color de fondo */
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px; /* Añadí margen superior para separar del borde superior */
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        #error {
+            visibility: hidden;
+            color: red;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff; /* Cambié el color de fondo del formulario */
+            padding: 20px;
+            border-radius: 8px; /* Añadí bordes redondeados al formulario */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añadí una sombra al formulario */
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666; /* Cambié el color del texto de las etiquetas */
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ddd; /* Añadí un borde a los inputs */
+            border-radius: 4px; /* Añadí bordes redondeados a los inputs */
+            transition: border-color 0.3s ease; /* Añadí una transición al color del borde */
+        }
+
+        input.error {
+            border-color: red; /* Estilo para inputs con error */
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff; /* Cambié el color del borde al hacer foco en el input */
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 0;
+            font-size: 16px;
+            transition: background-color 0.3s ease; /* Añadí una transición al color de fondo del botón */
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3; /* Cambié el color del botón al pasar el ratón por encima */
+        }
+        .logo {
+            width: auto;
+            height: 300px;
+            text-align: center;
+            margin: 0 auto; /* Centrar el logo */
+            display: block;
+
+        }
+    </style>
+</head>
+
+<body>
+
+<a href="/">
+    <img th:src="@{/imagenes/logom.png}" class="logo">
+</a>
+
+<h2 id="error">Las contraseñas no coinciden</h2>
+<form th:action="@{/guardarcontra}" method="post" id="formulario">
+    <fieldset>
+        <legend>Establece la nueva contraseña</legend>
+        <p>
+            <label for="pw1">Nueva contraseña: </label>
+            <input type="password" name="pw1" id="pw1" required>
+        </p>
+        <p>
+            <label for="pw2">Confirmar contraseña: </label>
+            <input type="password" name="pw2" id="pw2" required>
+        </p>
+        <p>
+            <input type="button" value="Guardar nueva contraseña" onclick="validar()">
+        </p>
+    </fieldset>
+</form>
+
+<script>
+    function validar() {
+        let pw1 = document.getElementById("pw1").value;
+        let pw2 = document.getElementById("pw2").value;
+        if (pw1 === pw2) {
+            document.getElementById("formulario").submit();
+        } else {
+            document.getElementById("error").style.visibility = "visible";
+            document.getElementById("pw1").classList.add("error");
+            document.getElementById("pw2").classList.add("error");
+        }
+    }
+</script>
+</body>
+
+</html>

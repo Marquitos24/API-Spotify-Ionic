@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso Denegado</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: firebrick;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+
+        .container h1 {
+            margin-top: 0;
+            font-size: 36px;
+        }
+
+        .container p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .logout-button {
+            background-color: #c82333;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #dc3545;
+        }
+
+        .img {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="/imagenes/denegado.png" alt="Acceso Denegado" class="img">
+    <h1>Acceso Denegado</h1>
+    <p>Esta sección está restringida.
+        <br>
+        No puedes visualizar el contenido.</p>
+    <a class="logout-button" href="/logout">Cerrar Sesión</a>
+</div>
+</body>
+</html>

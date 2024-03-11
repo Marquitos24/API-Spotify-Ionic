@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de eliminación</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 300px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            text-align: center;
+            color: #FF0000;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .confirmation-btns {
+            text-align: center;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: #fff;
+            background-color: #FF0000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>¡Atención!</h2>
+    <p>Esta acción es irreversible. <br> ¿Estás seguro de que deseas eliminar la tarea?</p>
+    <div class="confirmation-btns">
+        <a  th:href="@{'/trabajador/tarea/eliminar/confirmar/' + ${id}}"  class="btn">Confirmar</a>
+        <a href="/trabajador" class="btn">Cancelar</a>
+    </div>
+</div>
+</body>
+</html>
